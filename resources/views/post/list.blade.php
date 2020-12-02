@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
 
     <h1>Hello World !</h1>
 
-    @foreach ($posts as $post)
+    <div class="col-md-8">
 
-    <div class="card" style="width: 18rem;">
-        <img src="{{ $post->image_url }}" class="card-img-top" alt="">
-        <div class="card-body">
-            <p class="card-text">{{ $post->title }}</p>
-        </div>
+        @foreach ($posts as $post)
+
+        <article>
+            <div class="card p-5 my-4">
+                <div class="">
+                    <h2 class="card-title">{{ $post->title }}</h2>
+                </div>
+                <img src="{{ $post->image_url }}" class="card-img-top" alt="{{ $post->title }}">
+            </div>
+        </article>
+
+        @endforeach
+
     </div>
 
-    @endforeach
-
-</body>
-</html>
+@endsection
