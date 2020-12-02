@@ -8,6 +8,6 @@ class PostController extends Controller
      * Renvoie la liste des postes
      */
     public function list() {
-        return 'Voici une liste !';
+        return view('post/list');
     }
 }
