@@ -19,11 +19,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">🌟 Polaris</a>
+            <a class="navbar-brand" href="{{ route('home') }}">🌟 Polaris</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mr-3">
-                        <a class="btn btn-outline-secondary" href="#" role="button">
+                        <a class="btn btn-outline-secondary" href="{{ route('post_random') }}" role="button">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dice-2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M0 3a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3zm5.5 1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                             </svg>
@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="/post/new" role="button">
+                        <a class="btn btn-primary" href="{{ route('post_new') }}" role="button">
                             Propose un post
                         </a>
                     </li>

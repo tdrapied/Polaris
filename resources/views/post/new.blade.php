@@ -43,7 +43,7 @@
                 <hr class="my-4">
 
                 <button class="btn btn-primary btn-lg btn-block" type="submit">
-                    Enregistrer
+                    Soumettre un post
                 </button>
 
             </form>

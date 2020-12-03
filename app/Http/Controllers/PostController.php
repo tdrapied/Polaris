@@ -21,6 +21,19 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * Renvoie un post random
+     */
+    public function random() {
+        $random = DB::table('posts')
+                        ->where('is_published', true)
+                        ->inRandomOrder()
+                        ->first();
+        return view('post/random', [
+            'post' => $random
+        ]);
+    }
+
     public function new(Request $request) {
 
         $method = $request->method();

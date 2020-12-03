@@ -13,7 +13,9 @@
 |
 */
 
-$router->get('/', 'PostController@list');
+$router->get('/', ['as' => 'home', 'uses' => 'PostController@list']);
 
-$router->get('post/new', 'PostController@new');
-$router->post('post/new', 'PostController@new');
+$router->get('new', ['as' => 'post_new', 'uses' => 'PostController@new']);
+$router->post('new', ['as' => 'post_new', 'uses' => 'PostController@new']);
+
+$router->get('random', ['as' => 'post_random', 'uses' => 'PostController@random']);
