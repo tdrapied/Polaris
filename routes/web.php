@@ -14,3 +14,6 @@
 */
 
 $router->get('/', 'PostController@list');
+
+$router->get('post/new', 'PostController@new');
+$router->post('post/new', 'PostController@new');

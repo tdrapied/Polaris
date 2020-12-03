@@ -21,4 +21,21 @@ class PostController extends Controller
         ]);
     }
 
+    public function new(Request $request) {
+
+        $method = $request->method();
+
+        if ($request->isMethod('post')) {
+
+            $this->validate($request, [
+                'title' => 'required',
+            ]);
+
+            //dd($this);*/
+
+            // $title = $request->input('title');
+        }
+
+        return view('post/new');
+    }
 }
