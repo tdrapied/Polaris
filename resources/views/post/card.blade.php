@@ -1,0 +1,12 @@
+<article class="card mb-4">
+   <div class="card-body mx-4 mt-3">
+       <img class="card-img-top" src="{{ $post->image_url }}" alt="{{ $post->title }}">
+       <h2 class="card-title mt-3">{{ $post->title }}</h2>
+   </div>
+   <div class="card-footer text-muted">
+       <div class="mx-4">
+           Posted on January 1, 2020 by
+           <a href="#">Start Bootstrap</a>
+       </div>
+   </div>
+</article>
