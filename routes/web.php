@@ -13,8 +13,4 @@
 |
 */
 
-$router->get('/', function () {
-    return 'homepage';
-});
-
-$router->get('post', 'PostController@list');
+$router->get('/', 'PostController@list');
