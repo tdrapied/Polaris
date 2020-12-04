@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->longText('description')->nullable();
             $table->string('image_url');
             $table->boolean('is_published')->default(false);
-            $table->dateTimeTz('created_at', 0);
+            $table->timestamps();
         });
     }
 
