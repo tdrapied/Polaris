@@ -45,14 +45,16 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="mb-0 text-white">Promis on vous pique pas vos cookies ! 🍪</p>
-            <div class="blockquote-footer">
-                <cite title="Polaris">Polaris</cite>
+    @section('footer')
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="mb-0 text-white">Promis on vous pique pas vos cookies ! 🍪</p>
+                <div class="blockquote-footer">
+                    <cite title="Polaris">Polaris</cite>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    @show
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -13,7 +13,22 @@
 |
 */
 
+/**
+ * Homepage
+ */
+
 $router->get('/', ['as' => 'home', 'uses' => 'PostController@list']);
+
+/**
+ * Security
+ */
+
+$router->get('login', ['as' => 'security_login', 'uses' => 'SecurityController@login']);
+$router->get('signup', ['as' => 'security_signup', 'uses' => 'SecurityController@signup']);
+
+ /**
+  * Post
+  */
 
 $router->group(['prefix' => 'new'], function () use ($router) {
 
