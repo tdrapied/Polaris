@@ -39,7 +39,7 @@ class PostController extends Controller
     public function form(Request $request, $id = null) {
 
         // Créer un post par défault
-        if (!$id && $id != '0') $post = new Post();
+        if (!$id && $id != '0') $post = new Post($request->all());
         // Ou récupére celui déjà existant
         else {
             $post = Post::find($id);
