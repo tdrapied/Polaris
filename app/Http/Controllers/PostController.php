@@ -39,7 +39,7 @@ class PostController extends Controller
     public function form(Request $request, $id = null) {
 
         // Créer un post par défault
-        if (!$id && $id != '0') $post = new Post($request->all());
+        if (!$id && $id != '0') $post = new Post();
         // Ou récupére celui déjà existant
         else {
             $post = Post::find($id);
@@ -56,6 +56,9 @@ class PostController extends Controller
 
             $error = $validator->fails();
             if (!$error) {
+
+                // Modifie le post avec les nouvelles données soumis par le formulaire
+                $post->update($request->all());
 
                 // Si l'enregistrement ne fonctionne pas
                 if (!$post->save()) {
