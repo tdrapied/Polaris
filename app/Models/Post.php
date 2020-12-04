@@ -15,7 +15,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'image_url', 'is_published', 'created_at', 'updated_at'
+        'title', 'image_url', 'description', 'is_published', 'created_at',
     ];
 
     /**
@@ -24,4 +24,10 @@ class Post extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public static $rules = [
+        'title' => 'required|min:3|max:50',
+        'image_url' => 'required|min:3|max:255',
+    ];
+
 }
