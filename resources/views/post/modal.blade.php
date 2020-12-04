@@ -4,7 +4,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">GIF</h5>
@@ -20,12 +20,9 @@
                     </div>
                 </div>
                 <hr>
-                <div id="container-image">
-                    <p class="text-center lead">Attente d'une recherche</p>
+                <div class="row justify-content-md-center tenor_container_image" id="container-image">
+                    <p class="text-center my-5 lead">Attente d'une recherche</p>
                 </div>
-            </div>
-            <div class="modal-footer">
-                fuck
             </div>
         </div>
     </div>

@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div class="py-5 text-center">
+    <div class="py-4 text-center">
+        <img class="mb-2" src="{{ url('assets/image/logo.png')}}" alt="" width="72" height="72">
         <h2>Propose un post pour Polaris</h2>
         <p class="lead">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum ipsam magni saepe quidem ex illum iusto sequi laudantium,

@@ -8,6 +8,10 @@ body {
     background-color: #edeff1;
 }
 
+/**
+ * Formulaire de connection et d'inscription
+ */
+
 .form-sign {
     width: 100%;
     max-width: 330px;
@@ -38,4 +42,19 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+/**
+ * Modal tenor
+ */
+
+.tenor_container_image img {
+    margin-bottom: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 3px solid transparent;
+}
+
+.tenor_container_image img:hover {
+    border-color: #0069D9;
 }
