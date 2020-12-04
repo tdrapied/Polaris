@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('post.template')
 
-@section('content')
+@section('title', 'Random post')
+
+@section('col')
 
         @include('post.card')
 
