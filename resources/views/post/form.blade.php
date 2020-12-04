@@ -23,27 +23,40 @@
 
         <div class="col-md-8 order-md-1">
 
-            <form class="mb-5" action="/post/new" method="post">
+            @if ($error)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Une erreur est survenue, veuillez vérifier les champs du formulaire.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            <form class="mb-5" action="" method="post">
 
                 <div class="mb-3">
                     <label for="title">Titre du post</label>
-                    <input type="text" class="form-control" id="title" required>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="description">Description du post (Optionnel)</label>
-                    <textarea class="form-control" id="description" rows="3"></textarea>
+                    <textarea class="form-control" id="description" name="description" value="{{ $post->description }}" rows="3"></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label for="url">URL de l'image</label>
-                    <input type="text" class="form-control" id="url" placeholder="https://example.gif" required>
+                    <label for="image_url">URL de l'image</label>
+                    <input type="url" class="form-control" id="image_url" name="image_url" placeholder="https://example.gif" value="{{ $post->image_url }}" required>
                 </div>
 
                 <hr class="my-4">
 
                 <button class="btn btn-primary btn-lg btn-block" type="submit">
-                    Soumettre un post
+                    @if ($edit)
+                        Modifier le post
+                    @else
+                        Soumettre le post
+                    @endif
                 </button>
 
             </form>

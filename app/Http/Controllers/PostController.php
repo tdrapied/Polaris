@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -29,26 +30,48 @@ class PostController extends Controller
                         ->where('is_published', true)
                         ->inRandomOrder()
                         ->first();
+
         return view('post/random', [
             'post' => $random
         ]);
     }
 
-    public function new(Request $request) {
+    public function form(Request $request, $id = null) {
 
-        $method = $request->method();
-
-        if ($request->isMethod('post')) {
-
-            $this->validate($request, [
-                'title' => 'required',
-            ]);
-
-            //dd($this);*/
-
-            // $title = $request->input('title');
+        // Créer un post par défault
+        if (!$id && $id != '0') $post = new Post($request->all());
+        // Ou récupére celui déjà existant
+        else {
+            $post = Post::find($id);
+            // Si le post n'existe pas
+            if (!$post) return response(null, 400);
         }
 
-        return view('post/new');
+        $method = $request->method();
+        $error = false;
+
+        if ($request->isMethod('post')) {
+            // On valide le formulaire
+            $validator = \Validator::make($request->all(), Post::$rules);
+
+            $error = $validator->fails();
+            if (!$error) {
+
+                // Si l'enregistrement ne fonctionne pas
+                if (!$post->save()) {
+                    return response(null, 500);
+                }
+
+                return redirect()->route('home');
+
+            }
+
+        }
+
+        return view('post/form', [
+            'post' => $post,
+            'edit' => $post->exists, // si s'est une édition
+            'error' => $error
+        ]);
     }
 }

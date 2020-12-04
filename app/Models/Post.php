@@ -26,7 +26,7 @@ class Post extends Model
     protected $hidden = [];
 
     public static $rules = [
-        'title' => 'required|min:3|max:50',
+        'title' => 'required|min:3|max:100',
         'image_url' => 'required|min:3|max:255',
     ];
 
