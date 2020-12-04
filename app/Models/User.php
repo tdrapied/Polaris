@@ -30,4 +30,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public static $rules = [
+        'username' => 'required|min:3|max:12|unique:users',
+        'password' => 'required|min:4|max:18',
+    ];
 }
