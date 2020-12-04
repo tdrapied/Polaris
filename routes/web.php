@@ -24,7 +24,12 @@ $router->get('/', ['as' => 'home', 'uses' => 'PostController@list']);
  */
 
 $router->get('login', ['as' => 'security_login', 'uses' => 'SecurityController@login']);
-$router->get('signup', ['as' => 'security_signup', 'uses' => 'SecurityController@signup']);
+$router->group(['prefix' => 'signup'], function () use ($router) {
+
+    $router->get('/', ['as' => 'security_signup', 'uses' => 'SecurityController@signup']);
+    $router->post('/', 'SecurityController@signup');
+
+});
 
  /**
   * Post
