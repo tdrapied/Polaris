@@ -14,11 +14,15 @@
     <div class="row mb-5">
 
         <div class="col-md-4 order-md-2 mb-4">
-            <h4></h4>
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Trouver un gif</span>
             </h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad rem ex sit nihil reiciendis ipsam.</p>
+            @include('post.modal')
+            <h4 class="mt-4 mb-3 text-muted">Preview</h5>
+            <div class="text-center">
+                <img class="rounded" id="preview-image" src="{{ $post->image_url ?: 'https://media1.tenor.com/images/c7504b9fb03c95b3b5687d744687e11c/tenor.gif' }}" alt="preview image">
+            </div>
         </div>
 
         <div class="col-md-8 order-md-1">
@@ -46,7 +50,12 @@
 
                 <div class="mb-3">
                     <label for="image_url">URL de l'image</label>
-                    <input type="url" class="form-control" id="image_url" name="image_url" placeholder="https://example.gif" value="{{ $post->image_url }}" required>
+                    <div class="input-group">
+                        <input type="url" class="form-control" id="image_url" name="image_url" placeholder="https://example.gif" value="{{ $post->image_url }}" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" id="btnPreview" type="button">Preview</button>
+                        </div>
+                    </div>
                 </div>
 
                 <hr class="my-4">
@@ -75,5 +84,23 @@
         </div>
 
     </div>
+
+@endsection
+
+@section('script')
+
+    <script src="{{ url('assets/js/tenor.js') }}"></script>
+    <script type="text/javascript">
+        const tenor = new Tenor();
+        // Pour lancer la recherche
+        document.querySelector('#btnTenor').addEventListener('click', function() {
+            const term = document.querySelector('#searchTenor').value;
+            tenor.search(term);
+        });
+        // Quand on appuie sur le bouton "Preview"
+        document.querySelector('#btnPreview').addEventListener('click', function() {
+            document.querySelector('#preview-image').src = document.querySelector('#image_url').value;
+        });
+    </script>
 
 @endsection
