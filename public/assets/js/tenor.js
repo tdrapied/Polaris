@@ -28,7 +28,10 @@ class Tenor {
             return;
         });
     }
-
+    
+    /**
+     * Recupère l'element html 'img'
+     */
     getElementImage(item) {
         const img = document.createElement('img');
         // Quand on clique sur l'image
@@ -41,40 +44,46 @@ class Tenor {
         img.alt = item.title;
 
         return img;
-        //container.appendChild(img);
     }
-
+    
+    /**
+     * Recupère la div 'row'
+     */
     getRow() {
         const row = document.createElement('div');
         row.className += "col-auto d-flex flex-column p-0 m-1";
-
         return row;
     }
-
+    
+    /**
+     * Divise le tableau par rapport au nombre de colonne
+     */
+    splitArray(oldArray) {
+        let arr = [], 
+            i = 0;
+        for (const data of oldArray) {
+            if (!arr[i]) arr[i] = [];
+            arr[i].push(data);
+            if (i++ >= this.nbRow-1) i = 0;
+        }
+        return arr;
+    }
+    
     async search(term) {
         const result = await this.getTenorResult(this.__getUrl(term));
 
         const json = JSON.parse(result);
-        const data = json.results;
+        let data = this.splitArray(json.results);
 
         const container = document.querySelector('#container-image');
         container.innerHTML = ''; // On clear la div
-
-        let key = 0;
-        let maxItem = data.length / this.nbRow;
-        for (let i = 0; i < this.nbRow; i++) {
-
+        
+        for (const arr of data) {
             const row = this.getRow();
-
-            for (key; key < maxItem; key++) {
-                const item = data[key];
+            for (const item of arr) {
                 row.appendChild(this.getElementImage(item));
             }
-
             container.appendChild(row);
-
-            maxItem += maxItem;
-
         }
 
     }
