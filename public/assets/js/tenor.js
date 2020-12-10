@@ -28,7 +28,7 @@ class Tenor {
             return;
         });
     }
-    
+
     /**
      * Recupère l'element html 'img'
      */
@@ -45,7 +45,7 @@ class Tenor {
 
         return img;
     }
-    
+
     /**
      * Recupère la div 'row'
      */
@@ -54,12 +54,12 @@ class Tenor {
         row.className += "col-auto d-flex flex-column p-0 m-1";
         return row;
     }
-    
+
     /**
      * Divise le tableau par rapport au nombre de colonne
      */
     splitArray(oldArray) {
-        let arr = [], 
+        let arr = [],
             i = 0;
         for (const data of oldArray) {
             if (!arr[i]) arr[i] = [];
@@ -68,7 +68,7 @@ class Tenor {
         }
         return arr;
     }
-    
+
     async search(term) {
         const result = await this.getTenorResult(this.__getUrl(term));
 
@@ -76,8 +76,15 @@ class Tenor {
         let data = this.splitArray(json.results);
 
         const container = document.querySelector('#container-image');
+
+        // Si aucune données
+        if (data.length < 1) {
+            container.innerHTML = `<p class="text-center my-5 lead"><strong>${term} ??</strong></p>`;
+            return;
+        }
+
         container.innerHTML = ''; // On clear la div
-        
+
         for (const arr of data) {
             const row = this.getRow();
             for (const item of arr) {
