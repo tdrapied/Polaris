@@ -57,11 +57,8 @@ class PostController extends Controller
         // On récupére le post par rapport à l'id passé en paramètre
         $post = Post::find($id);
 
-        // Si le post existe
-        if ($post) {
-            // On supprime le post
-            $post->delete();
-        }
+        // Si le post existe, on le supprime
+        if ($post) $post->delete();
 
         return redirect()->route('home');
     }
