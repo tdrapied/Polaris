@@ -52,3 +52,5 @@ $router->group(['prefix' => 'edit/{id:[0-9]+}'], function () use ($router) {
 $router->get('search', ['as' => 'post_search', 'uses' => 'PostController@search']);
 
 $router->get('random', ['as' => 'post_random', 'uses' => 'PostController@random']);
+
+$router->get('deletePost', ['as' => 'post_delete', 'uses' => 'PostController@deletePost']);
