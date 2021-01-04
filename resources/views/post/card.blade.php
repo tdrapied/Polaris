@@ -1,6 +1,8 @@
 <article class="card mb-4">
    <div class="card-body mx-4 mt-3">
-       <img class="card-img-top" src="{{ $post->image_url }}" alt="{{ $post->title }}">
+       <img class="" width="426" src="{{ $post->image_url }}" alt="{{ $post->title }}">
+
+
        <h2 class="card-title mt-3">{{ $post->title }}</h2>
        <p class="card-text">{{ $post->description }}</p>
    </div>
