@@ -8,8 +8,12 @@
    </div>
    <div class="card-footer text-muted">
        <div class="mx-4">
-           Posted on January 1, 2020 by
+           Posted on January 1, 2020 by 
+      
            <a href="#">Start Bootstrap</a>
+           <a class="btn btn-outline-secondary float-right" href="{{ route('post_delete') }}" role="button">
+            Supprimer
+        </a>
        </div>
    </div>
 </article>

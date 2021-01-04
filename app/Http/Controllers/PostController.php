@@ -52,6 +52,20 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
+    
+    public function deletePost(Request $request){
+        $id = $request->get('id');
+        $posts = DB::table('posts')
+                     //->where('username', 'like', 'T%')
+                     ->where('is_published', true)
+                     ->orderBy('created_at', 'desc')
+                     ->delete($id);
+                     
+        return view('post/list',[
+            'posts' =>$posts
+        ]);  
+    }
+
 
     public function form(Request $request, $id = null) {
         // Créer un post par défault
