@@ -52,18 +52,18 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
-    
-    public function deletePost(Request $request){
-        $id = $request->get('id');
-        $posts = DB::table('posts')
-                     //->where('username', 'like', 'T%')
-                     ->where('is_published', true)
-                     ->orderBy('created_at', 'desc')
-                     ->delete($id);
-                     
-        return view('post/list',[
-            'posts' =>$posts
-        ]);  
+
+    public function delete(Request $request, $id = null) {
+        // On récupére le post par rapport à l'id passé en paramètre
+        $post = Post::find($id);
+
+        // Si le post existe
+        if ($post) {
+            // On supprime le post
+            $post->delete();
+        }
+
+        return redirect()->route('home');
     }
 
 

@@ -53,4 +53,4 @@ $router->get('search', ['as' => 'post_search', 'uses' => 'PostController@search'
 
 $router->get('random', ['as' => 'post_random', 'uses' => 'PostController@random']);
 
-$router->get('deletePost', ['as' => 'post_delete', 'uses' => 'PostController@deletePost']);
+$router->get('delete/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'PostController@delete' ]);
