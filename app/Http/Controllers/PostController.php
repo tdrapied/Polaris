@@ -53,6 +53,17 @@ class PostController extends Controller
         ]);
     }
 
+    public function delete(Request $request, $id = null) {
+        // On récupére le post par rapport à l'id passé en paramètre
+        $post = Post::find($id);
+
+        // Si le post existe, on le supprime
+        if ($post) $post->delete();
+
+        return redirect()->route('home');
+    }
+
+
     public function form(Request $request, $id = null) {
         // Créer un post par défault
         if (!$id && $id != '0') $post = new Post($request->all());
