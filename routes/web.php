@@ -16,13 +16,11 @@
 /**
  * Homepage
  */
-
 $router->get('/', ['as' => 'home', 'uses' => 'PostController@list']);
 
 /**
  * Security
  */
-
 $router->group(['prefix' => 'login'], function () use ($router) {
 
     $router->get('/', ['as' => 'security_login', 'uses' => 'SecurityController@login']);
@@ -42,7 +40,6 @@ $router->group(['prefix' => 'signup'], function () use ($router) {
  /**
   * Post
   */
-
 $router->group(['prefix' => 'new', 'middleware' => 'auth'], function () use ($router) {
 
     $router->get('/', ['as' => 'post_new', 'uses' => 'PostController@form']);
@@ -58,29 +55,26 @@ $router->group(['prefix' => 'edit/{id:[0-9]+}', 'middleware' => 'auth'], functio
 });
 
 $router->get('search', ['as' => 'post_search', 'uses' => 'PostController@search']);
-
 $router->get('random', ['as' => 'post_random', 'uses' => 'PostController@random']);
-
-
 $router->get('delete/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'PostController@delete' ]);
 
 /**
- * Admin Post
+ * Admin
  */
+$router->group(['prefix' => 'admin', 'middleware' => 'auth'], function () use ($router) {
 
-$router->get('deleteAdmin/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'AdminController@deleteAdmin' ]);
+    /**
+     * Posts
+     */
+    $router->get('posts', [ 'as' => 'admin_post_list', 'uses' => 'AdminPostController@list' ]);
+    $router->get('posts/enable/{id:[0-9]+}', [ 'as' => 'admin_post_enable', 'uses' => 'AdminPostController@enable' ]);
+    $router->get('posts/disable/{id:[0-9]+}', [ 'as' => 'admin_post_disable', 'uses' => 'AdminPostController@disable' ]);
 
-$router->get('crud/user/admin', ['as' => 'validation', 'uses' => 'AdminController@listAll']);
-
-$router->get('crud/user/admin/activate/{id:[0-9]+}', [ 'as' => 'post_activate', 'uses' => 'AdminController@activate' ]);
-
-$router->get('crud/user/admin/deactivate/{id:[0-9]+}', [ 'as' => 'post_deactivate', 'uses' => 'AdminController@deactivate' ]);
-
-/**
- * CRUD_user
- */
-$router->group(['prefix' => 'admin'], function () use ($router) {
+    /**
+     * Users
+     */
     $router->get('user', ['as' => 'user_index', 'uses' => 'UserController@index']);
     $router->get('user/{id}/edit', ['as' => 'user_edit', 'uses' => 'UserController@edit']);
     $router->patch('user/{id}', ['as' => 'user_update', 'uses' => 'UserController@update']);
+
 });

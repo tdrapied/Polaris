@@ -9,7 +9,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     /**
-     * Renvoie la liste des postes
+     * Renvoie la liste des postes publiées
      */
     public function list() {
         $posts = DB::table('posts')
