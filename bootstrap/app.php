@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -72,13 +74,23 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\Authenticate::class,
+]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
+
+/*
+|--------------------------------------------------------------------------
+| Constant
+|--------------------------------------------------------------------------
+*/
+
+define('COOKIE_SESSION_KEY', 'polaris_session');
+define('COOKIE_SECRET', 'k3mr2mUJDhuQM9kALJMLkFtY4xGYMMRF9XZ7hZ9x7bUkm3x4Qr');
+define('COOKIE_CYPHER', 'aes-256-ctr');
 
 /*
 |--------------------------------------------------------------------------

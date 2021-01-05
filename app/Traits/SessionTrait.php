@@ -11,7 +11,7 @@ trait SessionTrait {
      * @return Void
      */
     public static function setSessionCookie(string $value) {
-        Cookie::setcookie(COOKIE_SESSION_KEY, SessionTrait::encryptCookieValue($value))
+        Cookie::setcookie(COOKIE_SESSION_KEY, SessionTrait::encryptCookieValue($value));
     }
 
     /**
@@ -50,14 +50,13 @@ trait SessionTrait {
      * @param string $valueEncrypt
      * @return String
      */
-    private static function decryptCookieValue(string $valueEncrypt): String {
-        // Obtention de value et iv chiffrée
-        [$value, $id] = explode('|', $value);
-
+    private static function decryptCookieValue(string $valueEncrypt) {
+        $decryptedValue = null;
         try {
+            // Obtention de value et iv chiffrée
+            [$value, $id] = explode('|', $valueEncrypt);
             $decryptedValue = openssl_decrypt($value, COOKIE_CYPHER, COOKIE_SECRET, 0, $id);
         } catch (\Exception $e) {
-            // If we encounter an error, we return an empty string and we unset the cookie
             SessionTrait::unsetSessionCookie();
         }
 

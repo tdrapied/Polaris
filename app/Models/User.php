@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -35,4 +36,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'username' => 'required|min:3|max:12|unique:users',
         'password' => 'required|min:4|max:18',
     ];
+
+    public static function getOneUserByUsername(string $username) {
+        $user = DB::table('users')->where('username', $username)->first();
+        return $user;
+    }
+
 }
