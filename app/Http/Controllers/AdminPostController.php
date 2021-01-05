@@ -13,7 +13,8 @@ class AdminPostController extends Controller
      */
     public function list() {
         $posts = DB::table('posts')
-                        ->orderBy('id', 'asc')
+                        ->orderBy('created_at', 'desc')
+                        // ->orderBy('id', 'asc')
                         ->get();
 
         return view('admin/post/list', [
