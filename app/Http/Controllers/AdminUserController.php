@@ -50,9 +50,12 @@ class AdminUserController extends Controller
                     // Modifie le post avec les nouvelles données soumis par le formulaire
                     $user->username = $request->input('username');
                     $user->password = $request->input('password');
-                    $user->role = $request->input('role');
+
+                    $role = $request->input('role');
+                    $user->role = $role == "" ? null : $role;
+
                     $user->password = Hash::make($request->password);
-                    
+
                     if (!$user->save()) {
                         return response(null, 500);
                     }
