@@ -21,10 +21,11 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Roles</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="role" class="form-control" value="">
-                        <p class="help-block"></p>
-                    </div>
+                    <select class="form-control" name="role">
+                        <option></option>
+                        <option>Modérateur</option>
+                        <option>Administrateur</option>
+                    </select>
                 </div>
             </div>
             <div class="panel-footer">
