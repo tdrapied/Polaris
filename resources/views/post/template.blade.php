@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+<!--Banner -->
+@section('banner')
+    @yield('banner')
+@endsection
+
 @section('content')
 
     <div class="row">
