@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use App\Models\User;
+use App\Traits\SessionTrait;
 
 class Authenticate
 {
@@ -33,10 +35,22 @@ class Authenticate
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        // Vérifie que le l'utilisateur est connecté
+        $encryptedUsername = $request->cookie(COOKIE_SESSION_KEY);
+
+        if (!$encryptedUsername) return $next($request);
+
+        $username = SessionTrait::getSessionCookieValue($encryptedUsername);
+
+        if (!empty($username)) {
+
+            $user = User::getOneUserByUsername($username);
+
+            if ($user) $_SESSION['user'] = $user;
+            else SessionTrait::unsetSessionCookie();
+
         }
 
         return $next($request);

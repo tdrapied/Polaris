@@ -6,25 +6,39 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\SessionTrait;
+
+use ParagonIE\Cookie\Cookie;
 
 class SecurityController extends Controller
 {
-    public function login() {
+    public function login(Request $request) {
+
+        $method = $request->method();
+        $error = false;
+
+        if ($request->isMethod('post')) {
+
+            // On récupère l'utilisateur avec son "username"
+            $user = User::getOneUserByUsername($request->get('username'));
+
+            if  ($user && Hash::check($request->get('password'), $user->password) ) {
+
+                SessionTrait::setSessionCookie($user->username);
+
+                return redirect()->route('home');
+
+            }
+            else $error = true;
+
+        }
+
         return view('security/login', [
-            'error' => false
+            'error' => $error
         ]);
     }
 
-    public function signup(Request $request, $id = null) {
-
-        // Créer un post par défault
-        if (!$id && $id != '0') $user = new User($request->all());
-        // Ou récupére celui déjà existant
-        else {
-            $user = User::find($id);
-            // Si le post n'existe pas
-            if (!$user) return response(null, 400);
-        }
+    public function signup(Request $request) {
 
         $method = $request->method();
         $error = false;
@@ -36,8 +50,7 @@ class SecurityController extends Controller
             $error = $validator->fails();
             if (!$error) {
 
-                // Modifie le post avec les nouvelles données soumis par le formulaire
-                $user->update($request->all());
+                $user = new User($request->all());
 
                 $user->password = Hash::make($user->password);
                 // Si l'enregistrement ne fonctionne pas
@@ -52,8 +65,6 @@ class SecurityController extends Controller
         }
 
         return view('security/signup', [
-            'user' => $user,
-            'edit' => $user->exists, // si s'est une édition
             'error' => $error
         ]);
     }
