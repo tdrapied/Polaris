@@ -45,18 +45,32 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             @if(isset($_SESSION['user']))
+
+                                @php($role = $_SESSION['user']->role)
+
                                 <li>
                                     <a class="dropdown-item disabled" href="#">
                                         Hello <strong>{{ $_SESSION['user']->username }}</strong> !
+                                        @if ($role == "MODERATOR")
+                                            <span class="badge badge-warning"> {{ $role }}</span>
+                                        @elseif ($role == "ADMIN")
+                                            <span class="badge badge-danger">{{ $role }}</span>
+                                        @else
+                                            <span class="badge badge-secondary">USER</span>
+                                        @endif
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
 
-                                <!-- if ADMIN -->
+                                @if ($role == "MODERATOR" || $role == "ADMIN")
+                                    <li><a class="dropdown-item" href="{{ route('admin_post_list') }}">Gestion des posts</a></li>
 
-                                <li><a class="dropdown-item" href="{{ route('admin_post_list') }}">Gestion des posts</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin_user_list') }}">Gestion des utilisateurs</a></li>
-                                <li><hr class="dropdown-divider"></li>
+                                    @if ($role == "ADMIN")
+                                        <li><a class="dropdown-item" href="{{ route('admin_user_list') }}">Gestion des utilisateurs</a></li>
+                                    @endif
+
+                                    <li><hr class="dropdown-divider"></li>
+                                @endif
 
                                 <li><a class="dropdown-item" href="{{ route('security_logout') }}">Se déconnecter</a></li>
                             @else

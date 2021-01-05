@@ -11,7 +11,7 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Titre</th>
-            <th scope="col">Description</th>
+            <th scope="col">Utilisateur</th>
             <th scope="col">URL de l'image</th>
             <th scope="col">Date de création</th>
             <th scope="col">Actions</th>
@@ -24,7 +24,7 @@
             <tr>
                 <th scope="row">{{ $post->id }}</th>
                 <td class="text-truncate" style="max-width: 150px;">{{ $post->title }}</td>
-                <td class="text-truncate" style="max-width: 50px;">{{ $post->description }}</td>
+                <td>{{ $post->username }}</td>
                 <td>
                     <img class="" height="120" src="{{ $post->image_url }}" alt="{{ $post->title }}">
                 </td>

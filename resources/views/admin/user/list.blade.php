@@ -23,7 +23,7 @@
                 <th scope="row">{{ $user->id }}</th>
                 <td>{{ $user->username }}</td>
                 <td>
-                    <span class="badge badge-secondary">{{ $user->role }}</span>
+                    <span class="badge badge-secondary">{{ $user->role ?: "USER" }}</span>
                 </td>
                 <td>
                     <a class="btn btn-info " href="{{ route('admin_user_edit', [ 'id' => $user->id ]) }}" role="button">

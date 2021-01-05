@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label for="roleinput">Rôle</label>
                 <select class="form-control" name="role">
-                    <option
+                    <option value=""
                         @if (!$role)
                             selected
                         @endif
