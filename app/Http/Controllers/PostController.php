@@ -63,7 +63,6 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
-
     public function form(Request $request, $id = null) {
         // Créer un post par défault
         if (!$id && $id != '0') $post = new Post($request->all());
