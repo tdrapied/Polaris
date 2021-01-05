@@ -50,14 +50,12 @@ $router->group(['prefix' => 'new', 'middleware' => 'auth'], function () use ($ro
 
 });
 
-$router->group(['prefix' => 'edit/{id:[0-9]+}'], function () use ($router) {
+$router->group(['prefix' => 'edit/{id:[0-9]+}', 'middleware' => 'auth'], function () use ($router) {
 
     $router->get('/', ['as' => 'post_edit', 'uses' => 'PostController@form']);
     $router->post('/', 'PostController@form');
 
 });
-
-$router->get('delete/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'PostController@delete' ]);
 
 $router->get('search', ['as' => 'post_search', 'uses' => 'PostController@search']);
 
@@ -70,11 +68,13 @@ $router->get('delete/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'PostContr
  * Admin Post
  */
 
-$router->get('validation', ['as' => 'validation', 'uses' => 'AdminController@listAll']);
+$router->get('deleteAdmin/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'AdminController@deleteAdmin' ]);
 
-$router->get('activate/{id:[0-9]+}', [ 'as' => 'post_activate', 'uses' => 'AdminController@activate' ]);
+$router->get('crud/user/admin', ['as' => 'validation', 'uses' => 'AdminController@listAll']);
 
-$router->get('deactivate/{id:[0-9]+}', [ 'as' => 'post_deactivate', 'uses' => 'AdminController@deactivate' ]);
+$router->get('crud/user/admin/activate/{id:[0-9]+}', [ 'as' => 'post_activate', 'uses' => 'AdminController@activate' ]);
+
+$router->get('crud/user/admin/deactivate/{id:[0-9]+}', [ 'as' => 'post_deactivate', 'uses' => 'AdminController@deactivate' ]);
 
 /**
  * CRUD_user

@@ -13,25 +13,36 @@ class AdminController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->get();
 
-        return view('post/validation', [
+        return view('crud/user/admin', [
             'posts' => $posts
         ]);
     }
     public function activate($id = null){
-        $post = Post::find($id);
-        if($post &&  $post->is_published == false){
-               $post->where('id', $id)
+        $posts = Post::find($id);
+        if($posts &&  $posts->is_published == false){
+               $posts->where('id', $id)
                     ->update(['is_published'=> true]);
             }
-        return redirect()->route('validation');
+            return redirect('crud/user/admin');
     }
    
    public function deactivate($id = null){
-        $post = Post::find($id);
-        if($post &&  $post->is_published == true){
-            $post->where('id', $id)
+        $posts = Post::find($id);
+        if($posts &&  $posts->is_published == true){
+            $posts->where('id', $id)
                  ->update(['is_published'=> false]);
         }
-    return redirect()->route('validation');
+       return redirect('crud/user/admin');
     }
+
+    public function deleteAdmin(Request $request, $id = null) {
+        // On récupére le post par rapport à l'id passé en paramètre
+        $post = Post::find($id);
+
+        // Si le post existe, on le supprime
+        if ($post) $post->delete();
+
+        return redirect('crud/user/admin');
+    }
+
 }
