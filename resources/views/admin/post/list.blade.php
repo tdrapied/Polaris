@@ -42,7 +42,7 @@
                         </a>
                     @endif
 
-                    <a class="btn btn-primary " href="{{ url('edit', $post->id) }}" role="button">
+                    <a class="btn btn-info " href="{{ url('edit', $post->id) }}" role="button">
                         Editer
                     </a>
 
