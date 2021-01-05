@@ -43,7 +43,7 @@ $router->group(['prefix' => 'signup'], function () use ($router) {
   * Post
   */
 
-$router->group(['prefix' => 'new'], function () use ($router) {
+$router->group(['prefix' => 'new', 'middleware' => 'auth'], function () use ($router) {
 
     $router->get('/', ['as' => 'post_new', 'uses' => 'PostController@form']);
     $router->post('/', 'PostController@form');
