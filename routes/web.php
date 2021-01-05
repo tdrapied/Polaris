@@ -62,11 +62,16 @@ $router->get('search', ['as' => 'post_search', 'uses' => 'PostController@search'
 $router->get('random', ['as' => 'post_random', 'uses' => 'PostController@random']);
 
 /**
- * Admin
+ * CRUD_user
  */
+$router->get('user', ['as' => 'user_index', 'uses' => 'UserController@index']);
+$router->get('user/{id}/edit', ['as' => 'user_edit', 'uses' => 'UserController@edit']);
+$router->patch('user/{id}', ['as' => 'user_update', 'uses' => 'UserController@update']);
+$router->get('user/{id}/delete', ['as' => 'user_delete', 'uses' => 'UserController@delete']);
+$router->delete('user/{id}', ['as' => 'user_destroy', 'uses' => 'UserController@destroy']);
 
-$router->group(['prefix' => 'admin'], function () use ($router) {
+// $router->group(['prefix' => 'admin'], function () use ($router) {
 
-    # $router->get('users', [ 'as' => 'users_list', 'uses' => 'PostController@list' ]);
+//     # $router->get('users', [ 'as' => 'users_list', 'uses' => 'PostController@list' ]);
 
-});
+// });
