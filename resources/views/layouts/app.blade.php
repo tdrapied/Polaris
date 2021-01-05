@@ -30,11 +30,32 @@
                             Random
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-3">
                         <a class="btn btn-primary" href="{{ route('post_new') }}" role="button">
                             Propose un post
                         </a>
                     </li>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            @if(isset($_SESSION['user']))
+                                🙋‍♀️
+                            @else
+                                🙅
+                            @endif
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @if(isset($_SESSION['user']))
+                                <li><a class="dropdown-item disabled" href="#">Hello <strong>{{ $_SESSION['user']->username }}</strong> !</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('security_logout') }}">Se déconnecter</a></li>
+                            @else
+                                <li><a class="dropdown-item disabled" href="#">Déconnecté(e)</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('security_login') }}">Se connecter</a></li>
+                                <li><a class="dropdown-item" href="{{ route('security_signup') }}">S'inscrire</a></li>
+                            @endif
+                        </ul>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -58,7 +79,8 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     @yield('script')
 
 </body>
