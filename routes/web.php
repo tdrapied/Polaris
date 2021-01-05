@@ -73,8 +73,12 @@ $router->group(['prefix' => 'admin', 'middleware' => 'auth'], function () use ($
     /**
      * Users
      */
-    $router->get('user', ['as' => 'user_index', 'uses' => 'UserController@index']);
-    $router->get('user/{id}/edit', ['as' => 'user_edit', 'uses' => 'UserController@edit']);
-    $router->patch('user/{id}', ['as' => 'user_update', 'uses' => 'UserController@update']);
+    $router->get('users', ['as' => 'admin_user_list', 'uses' => 'AdminUserController@list']);
+    $router->group(['prefix' => 'users/edit/{id:[0-9]+}'], function () use ($router) {
+
+        $router->get('/', ['as' => 'admin_user_edit', 'uses' => 'AdminUserController@edit']);
+        $router->post('/', 'AdminUserController@edit');
+
+    });
 
 });

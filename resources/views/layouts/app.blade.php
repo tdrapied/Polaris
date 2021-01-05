@@ -55,7 +55,7 @@
                                 <!-- if ADMIN -->
 
                                 <li><a class="dropdown-item" href="{{ route('admin_post_list') }}">Gestion des posts</a></li>
-                                <li><a class="dropdown-item" href="#">Gestion des utilisateurs</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin_user_list') }}">Gestion des utilisateurs</a></li>
                                 <li><hr class="dropdown-divider"></li>
 
                                 <li><a class="dropdown-item" href="{{ route('security_logout') }}">Se déconnecter</a></li>
