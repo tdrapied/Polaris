@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Post;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //$this->call('PostFactory');
+        // Créer l'utilisateur admin
+        User::factory()->create();
+
+        // Créer 50 post par rapport à l'utilisateur "admin"
         Post::factory()
             ->times(50)
             ->create();
