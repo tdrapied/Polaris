@@ -30,6 +30,8 @@ $router->group(['prefix' => 'login'], function () use ($router) {
 
 });
 
+$router->get('logout', ['as' => 'security_logout', 'uses' => 'SecurityController@logout']);
+
 $router->group(['prefix' => 'signup'], function () use ($router) {
 
     $router->get('/', ['as' => 'security_signup', 'uses' => 'SecurityController@signup']);
@@ -41,7 +43,7 @@ $router->group(['prefix' => 'signup'], function () use ($router) {
   * Post
   */
 
-$router->group(['prefix' => 'new'], function () use ($router) {
+$router->group(['prefix' => 'new', 'middleware' => 'auth'], function () use ($router) {
 
     $router->get('/', ['as' => 'post_new', 'uses' => 'PostController@form']);
     $router->post('/', 'PostController@form');
@@ -77,14 +79,8 @@ $router->get('crud/user/admin/deactivate/{id:[0-9]+}', [ 'as' => 'post_deactivat
 /**
  * CRUD_user
  */
-$router->get('user', ['as' => 'user_index', 'uses' => 'UserController@index']);
-$router->get('user/{id}/edit', ['as' => 'user_edit', 'uses' => 'UserController@edit']);
-$router->patch('user/{id}', ['as' => 'user_update', 'uses' => 'UserController@update']);
-$router->get('user/{id}/delete', ['as' => 'user_delete', 'uses' => 'UserController@delete']);
-$router->delete('user/{id}', ['as' => 'user_destroy', 'uses' => 'UserController@destroy']);
-
-// $router->group(['prefix' => 'admin'], function () use ($router) {
-
-//     # $router->get('users', [ 'as' => 'users_list', 'uses' => 'PostController@list' ]);
-
-// });
+$router->group(['prefix' => 'admin'], function () use ($router) {
+    $router->get('user', ['as' => 'user_index', 'uses' => 'UserController@index']);
+    $router->get('user/{id}/edit', ['as' => 'user_edit', 'uses' => 'UserController@edit']);
+    $router->patch('user/{id}', ['as' => 'user_update', 'uses' => 'UserController@update']);
+});

@@ -22,8 +22,9 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'username' => "admin",
+            'password' => '$2y$10$D9AdpfYhbKj5Tl8ZUav/HOP1KEL4KwQ7dP.3/Z9ROUPLQ8Qn89rTO', // admin
+            'role' => "ADMIN",
         ];
     }
 }

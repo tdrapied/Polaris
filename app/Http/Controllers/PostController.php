@@ -63,7 +63,6 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
-
     public function form(Request $request, $id = null) {
         // Créer un post par défault
         if (!$id && $id != '0') $post = new Post($request->all());
@@ -86,6 +85,12 @@ class PostController extends Controller
 
                 // Modifie le post avec les nouvelles données soumis par le formulaire
                 $post->update($request->all());
+
+                // Si le post n'as pas encore d'ID
+                if (!$post->id) {
+                    // On lui rajoute l'id de son créateur
+                    $post->user_id = $_SESSION['user']->id;
+                }
 
                 // Si l'enregistrement ne fonctionne pas
                 if (!$post->save()) {

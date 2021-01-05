@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->longText('description')->nullable();
             $table->string('image_url');
             $table->boolean('is_published')->default(false);
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

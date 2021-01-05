@@ -9,6 +9,23 @@ body {
 }
 
 /**
+ * Bannière
+ */
+
+.banner {
+    width: 100%;
+    color: #fff;
+    background-color: #007bff;
+    background-position: center;
+    padding: 60px 0 85px 0;
+    text-align: center;
+}
+
+.banner p {
+
+}
+
+/**
  * Formulaire de connection et d'inscription
  */
 

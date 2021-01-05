@@ -4,31 +4,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
-use App\Models\User;
 use App\Traits\SessionTrait;
 
 class Authenticate
 {
     /**
-     * The authentication guard factory instance.
-     *
-     * @var \Illuminate\Contracts\Auth\Factory
-     */
-    protected $auth;
-
-    /**
-     * Create a new middleware instance.
-     *
-     * @param  \Illuminate\Contracts\Auth\Factory  $auth
-     * @return void
-     */
-    public function __construct(Auth $auth)
-    {
-        $this->auth = $auth;
-    }
-
-    /**
-     * Handle an incoming request.
+     * Vérifie que l'utilisateur est connecté
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -37,22 +18,10 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        // Vérifie que le l'utilisateur est connecté
-        $encryptedUsername = $request->cookie(COOKIE_SESSION_KEY);
+        // Si la variable "user" existe dans la session
+        if (isset($_SESSION['user'])) return $next($request);
 
-        if (!$encryptedUsername) return $next($request);
-
-        $username = SessionTrait::getSessionCookieValue($encryptedUsername);
-
-        if (!empty($username)) {
-
-            $user = User::getOneUserByUsername($username);
-
-            if ($user) $_SESSION['user'] = $user;
-            else SessionTrait::unsetSessionCookie();
-
-        }
-
-        return $next($request);
+        // sinon on redirige vers la connection
+        return redirect()->route('security_login');
     }
 }

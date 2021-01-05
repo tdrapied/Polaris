@@ -5,17 +5,24 @@
                 Editer un utilisateur
             </div>
             <div class="panel-body">
-                <div class="form-group {{ ($errors->has('username')) ? 'has-error' : '' }}">
+                <div class="form-group">
                     <label class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="text" name="username" class="form-control" value="{{ old('username') ?: $user->username }}">
-                        <p class="help-block">{{ ($errors->has('username') ? $errors->first('username') : '') }}</p>
+                        <input type="text" name="username" class="form-control" value="">
+                        <p class="help-block"></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="text" name="password" class="form-control" value="{{ old('password') ?: $user->password }}">
+                        <input type="text" name="password" class="form-control" value="">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Roles</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="role" class="form-control" value="">
                         <p class="help-block"></p>
                     </div>
                 </div>

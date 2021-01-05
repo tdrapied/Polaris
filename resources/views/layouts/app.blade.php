@@ -30,15 +30,38 @@
                             Random
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-3">
                         <a class="btn btn-primary" href="{{ route('post_new') }}" role="button">
                             Propose un post
                         </a>
                     </li>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if(isset($_SESSION['user']))
+                                🙋‍♀️
+                            @else
+                                🙅
+                            @endif
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @if(isset($_SESSION['user']))
+                                <li><a class="dropdown-item disabled" href="#">Hello <strong>{{ $_SESSION['user']->username }}</strong> !</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('security_logout') }}">Se déconnecter</a></li>
+                            @else
+                                <li><a class="dropdown-item disabled" href="#">Déconnecté(e)</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('security_login') }}">Se connecter</a></li>
+                                <li><a class="dropdown-item" href="{{ route('security_signup') }}">S'inscrire</a></li>
+                            @endif
+                        </ul>
+                    </div>
                 </ul>
             </div>
         </div>
     </nav>
+
+    @yield('banner')
 
     <div class="container">
         @yield('content')
