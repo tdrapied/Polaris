@@ -13,7 +13,8 @@ class AdminPostController extends Controller
      */
     public function list() {
         $posts = DB::table('posts')
-                        ->orderBy('created_at', 'desc')
+                        ->join('users', 'posts.user_id', '=', 'users.id')
+                        ->orderBy('posts.created_at', 'desc')
                         // ->orderBy('id', 'asc')
                         ->get();
 

@@ -14,7 +14,8 @@ class PostController extends Controller
     public function list() {
         $posts = DB::table('posts')
                         ->where('is_published', true)
-                        ->orderBy('created_at', 'desc')
+                        ->join('users', 'posts.user_id', '=', 'users.id')
+                        ->orderBy('posts.created_at', 'desc')
                         ->get();
 
         return view('post/list', [
@@ -28,6 +29,7 @@ class PostController extends Controller
     public function random() {
         $random = DB::table('posts')
                         ->where('is_published', true)
+                        ->join('users', 'posts.user_id', '=', 'users.id')
                         ->inRandomOrder()
                         ->first();
 
@@ -45,7 +47,8 @@ class PostController extends Controller
                         ->where('title', 'like', "%$title%")
                         //->where('username', 'like', 'T%')
                         ->where('is_published', true)
-                        ->orderBy('created_at', 'desc')
+                        ->join('users', 'posts.user_id', '=', 'users.id')
+                        ->orderBy('posts.created_at', 'desc')
                         ->get();
 
         return view('post/search', [
