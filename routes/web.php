@@ -61,7 +61,7 @@ $router->get('search', ['as' => 'post_search', 'uses' => 'PostController@search'
 
 $router->get('random', ['as' => 'post_random', 'uses' => 'PostController@random']);
 
-<<<<<<< HEAD
+
 $router->get('delete/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'PostController@delete' ]);
 
 /**
@@ -73,7 +73,7 @@ $router->get('validation', ['as' => 'validation', 'uses' => 'AdminController@lis
 $router->get('activate/{id:[0-9]+}', [ 'as' => 'post_activate', 'uses' => 'AdminController@activate' ]);
 
 $router->get('deactivate/{id:[0-9]+}', [ 'as' => 'post_deactivate', 'uses' => 'AdminController@deactivate' ]);
-=======
+
 /**
  * CRUD_user
  */
@@ -88,4 +88,3 @@ $router->delete('user/{id}', ['as' => 'user_destroy', 'uses' => 'UserController@
 //     # $router->get('users', [ 'as' => 'users_list', 'uses' => 'PostController@list' ]);
 
 // });
->>>>>>> 1d0a3c4bc25084271dd91aaf0793073db2d511a3
