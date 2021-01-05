@@ -20,13 +20,13 @@
         <form class="form-group" method="POST" action="">
 
             <div class="form-group">
-                <label for="usernameinput">Nom d'utilisateur</label>
-                <input type="text" name="username" class="form-control" value="{{ $user->username }}">
+                <label for="usernameinput">Nom de l'utilisateur</label>
+                <input type="text" name="username" class="form-control" value="{{ $user->username }}" required>
             </div>
 
             <div class="form-group">
                 <label for="passwordinput">Mot de passe</label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" name="password" class="form-control" required>
             </div>
 
             @php($role = $user->role)
