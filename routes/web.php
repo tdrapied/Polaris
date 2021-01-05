@@ -30,6 +30,8 @@ $router->group(['prefix' => 'login'], function () use ($router) {
 
 });
 
+$router->get('logout', ['as' => 'security_logout', 'uses' => 'SecurityController@logout']);
+
 $router->group(['prefix' => 'signup'], function () use ($router) {
 
     $router->get('/', ['as' => 'security_signup', 'uses' => 'SecurityController@signup']);
@@ -41,7 +43,7 @@ $router->group(['prefix' => 'signup'], function () use ($router) {
   * Post
   */
 
-$router->group(['prefix' => 'new'], function () use ($router) {
+$router->group(['prefix' => 'new', 'middleware' => 'auth'], function () use ($router) {
 
     $router->get('/', ['as' => 'post_new', 'uses' => 'PostController@form']);
     $router->post('/', 'PostController@form');
