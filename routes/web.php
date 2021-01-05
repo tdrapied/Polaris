@@ -50,7 +50,7 @@ $router->group(['prefix' => 'new', 'middleware' => 'auth'], function () use ($ro
 
 });
 
-$router->group(['prefix' => 'edit/{id:[0-9]+}'], function () use ($router) {
+$router->group(['prefix' => 'edit/{id:[0-9]+}', 'middleware' => 'auth'], function () use ($router) {
 
     $router->get('/', ['as' => 'post_edit', 'uses' => 'PostController@form']);
     $router->post('/', 'PostController@form');
