@@ -1,36 +1,27 @@
-    <form class="form-horizontal" role="form" method="POST" action="{{ route('user_update', ['id' => $user->id]) }}">
+@extends('layouts.app')
+
+@section('content')
+    <form class="form-group" method="POST" action="{{ route('user_update', ['id' => $user->id]) }}">
         <input type="hidden" name="_method" value="PATCH">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Editer un utilisateur
+            <div class="form-group">
+                <label for="usernameinput">Nom d'utilisateur</label>
+                <input type="text" name="username" class="form-control" value="">
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Username</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="username" class="form-control" value="">
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="password" class="form-control" value="">
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Roles</label>
+            <div class="form-group">
+                <label for="passwordinput">Mot de passe</label>
+                <input type="password" name="password" class="form-control" value="">
+            </div>
+            <div class="form-group">
+                <label for="roleinput">Role</label>
                     <select class="form-control" name="role">
                         <option></option>
-                        <option>Modérateur</option>
-                        <option>Administrateur</option>
+                        <option value="Moderateur">Modérateur</option>
+                        <option value="Administrateur">Administrateur</option>
                     </select>
-                </div>
             </div>
-            <div class="panel-footer">
-                <button type="submit" class="btn btn-sm btn-info btn-addon"><i class="glyphicon glyphicon-ok"></i>Update</button>
-                <a href="{{ route('user_index') }}" class="btn btn-default btn-sm btn-addon"><i class="glyphicon glyphicon-remove"></i>Cancel</a>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                <a href="{{ route('user_index') }}"><button type="button" href="{{ route('user_index') }}" class="btn btn-danger">Annuler</button></a>
             </div>
-        </div>
     </form>
+@endsection
