@@ -9,7 +9,7 @@ use App\Traits\SessionTrait;
 class Connection
 {
     /**
-     * Permet de vérifier si l'utilisateur est connecté et que ces données n'ont pas étaient modifiées
+     * Permet de vérifier si l'utilisateur est connecté que ces données n'ont pas étaient modifiées
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
