@@ -45,8 +45,19 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             @if(isset($_SESSION['user']))
-                                <li><a class="dropdown-item disabled" href="#">Hello <strong>{{ $_SESSION['user']->username }}</strong> !</a></li>
+                                <li>
+                                    <a class="dropdown-item disabled" href="#">
+                                        Hello <strong>{{ $_SESSION['user']->username }}</strong> !
+                                    </a>
+                                </li>
                                 <li><hr class="dropdown-divider"></li>
+
+                                <!-- if ADMIN -->
+
+                                <li><a class="dropdown-item" href="{{ route('admin_post_list') }}">Gestion des posts</a></li>
+                                <li><a class="dropdown-item" href="#">Gestion des utilisateurs</a></li>
+                                <li><hr class="dropdown-divider"></li>
+
                                 <li><a class="dropdown-item" href="{{ route('security_logout') }}">Se déconnecter</a></li>
                             @else
                                 <li><a class="dropdown-item disabled" href="#">Déconnecté(e)</a></li>
