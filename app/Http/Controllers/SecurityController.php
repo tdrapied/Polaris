@@ -38,6 +38,12 @@ class SecurityController extends Controller
         ]);
     }
 
+    public function logout()
+    {
+        SessionTrait::unsetSessionCookie();
+        return redirect()->route('home');
+    }
+
     public function signup(Request $request) {
 
         $method = $request->method();
