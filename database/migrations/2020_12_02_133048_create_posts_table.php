@@ -19,7 +19,10 @@ class CreatePostsTable extends Migration
             $table->longText('description')->nullable();
             $table->string('image_url');
             $table->boolean('is_published')->default(false);
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
