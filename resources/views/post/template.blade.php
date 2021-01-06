@@ -29,7 +29,7 @@
             <div class="card my-4">
                 <h5 class="card-header">🔎 Recherche</h5>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo illo similique in libero ea! Distinctio?</p>
+                    <p>Tu cherches ton post préféré, mais tu ne le retrouves pas ? Essaye la fonctionnalité ci-dessous. Tu n’as qu'à remplir le username ou le titre du post.</p>
                     <form action="{{ route('post_search') }}" method="get">
                         <div class="form-group">
                             <input type="text" class="form-control" name="title" placeholder="Titre du post" value="{{ isset($_GET['title']) ? $_GET['title'] : '' }}">
@@ -54,9 +54,8 @@
                     <img width="100%" src="https://media.tenor.com/images/f969c854145e5c86fa41dd9eab919c63/tenor.gif" alt="cute cat">
                 </div>
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos, natus? Accusamus,
-                    dolore quas sunt repellendus recusandae dolores laboriosam magnam alias,
-                    vel voluptatibus aut blanditiis expedita mollitia ullam illum natus, debitis.
+                    Polaris est la nouvelle plateforme innovante qui vous donne un excellent état d’esprit et une grande diversité
+                     du contenu, avec une communauté de 10000 personnes.
                 </div>
             </div>
 
