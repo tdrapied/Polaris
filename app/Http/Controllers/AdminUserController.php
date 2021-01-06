@@ -26,7 +26,7 @@ class AdminUserController extends Controller
         $user = User::find($id);
 
         // Si le user n'existe pas
-        if (!$user) return response(null, 400);
+        if (!$user) return abort(404);
 
         $method = $request->method();
         $error = false;
@@ -57,7 +57,7 @@ class AdminUserController extends Controller
                     $user->password = Hash::make($request->password);
 
                     if (!$user->save()) {
-                        return response(null, 500);
+                        return abort(500);
                     }
 
                     return redirect()->route('admin_user_list');
