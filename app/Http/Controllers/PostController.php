@@ -49,7 +49,6 @@ class PostController extends Controller
         $posts = DB::table('posts')
                         ->select('posts.*', 'users.username')
                         ->where('title', 'like', "%$title%")
-                        //->where('user_id', 'like', "%$user->id%")
                         ->where('username', 'like', "%$username%")
                         ->where('is_published', true)
                         ->join('users', 'posts.user_id', '=', 'users.id')
