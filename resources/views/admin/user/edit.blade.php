@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <div class="my-5 pb-5">
+    <div class="my-5">
 
         <form class="form-group" method="POST" action="">
 
@@ -27,6 +27,7 @@
             <div class="form-group">
                 <label for="passwordinput">Mot de passe</label>
                 <input type="password" name="password" class="form-control" required>
+                <div id="passwordHelp" class="form-text">* Veuillez re-saisir un mot de passe.</div>
             </div>
 
             @php($role = $user->role)
@@ -58,7 +59,7 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mt-4">
                 <button class="btn btn-primary" type="submit">Modifier</button>
                 <a class="btn btn-secondary " href="{{ route('admin_user_list') }}" role="button">
                     Annuler
@@ -66,6 +67,15 @@
             </div>
 
         </form>
+
+        <div class="mt-5 mb-3 pb-3">
+            <h5>Important – A propos des rôles </h5>
+            <ul>
+                <li>Aucun rôle : L'utilisateur par défault, il peut créer des posts et les modifiers.</li>
+                <li>Modérateur : Il peut changer le status de tous les posts ajoutés ainsi que les modifiers et voir, les supprimer.</li>
+                <li>Administrateur : A tous les droits. C'est le boss :)</li>
+            </ul>
+        </div>
 
     </div>
 
