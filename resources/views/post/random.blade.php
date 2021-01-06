@@ -1,6 +1,6 @@
 @extends('post.template')
 
-@section('title', 'Random post')
+@section('title', '🎲 Random post')
 
 @section('col')
 

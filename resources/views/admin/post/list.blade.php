@@ -3,7 +3,7 @@
 @section('content')
 
 <h1 class="my-4 h2">
-    Liste des postes :
+    📂 Liste des postes :
 </h1>
 
 <table class="table table-striped">

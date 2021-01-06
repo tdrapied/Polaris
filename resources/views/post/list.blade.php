@@ -22,7 +22,7 @@
 
 @endsection
 
-@section('title', 'Les derniers posts')
+@section('title', '📬 Les derniers posts')
 
 @section('col')
 
