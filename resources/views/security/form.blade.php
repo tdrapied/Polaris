@@ -32,6 +32,12 @@
 
     </div>
 
+    <div class="text-center">
+
+        @yield('ahref')
+
+    </div>
+
 @endsection
 
 @section('footer')
