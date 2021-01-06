@@ -4,12 +4,17 @@
 
     <div class="py-4 text-center">
         <img class="mb-2" src="{{ url('assets/image/logo.png')}}" alt="" width="72" height="72">
-        <h2>Propose un post pour Polaris</h2>
-        <p class="lead">
-            Bienvenue sur la plateforme Polaris, un espace libre et créatif pour les amateurs de gifs et d'humour. 
-            Ici chacun peut faire partie de la communauté Polaris en déposant des gifs via
-             l' Api Tenor ou en utilisant des liens des différentes images. On attend avec impatience vos partages.
-        </p>
+        @if ($edit)
+            <h2>Modifier le post de <strong>{{ $post->username }}</strong></h2>
+            <hr class="mt-4">
+        @else
+            <h2>Propose un post pour Polaris</h2>
+            <p class="lead">
+                Bienvenue sur la plateforme Polaris, un espace libre et créatif pour les amateurs de gifs et d'humour.
+                Ici chacun peut faire partie de la communauté Polaris en déposant des gifs via
+                l'API Tenor ou en utilisant des liens des différentes images. On attend avec impatience vos partages.
+            </p>
+        @endif
     </div>
 
     <div class="row mb-5">
@@ -18,7 +23,7 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Trouver un gif sur Tenor</span>
             </h4>
-            <p>Si vous souhaitez retrouver un gif, c’est très simple ! Utilisez les mots clés de la barre de recherche et plusieurs options vous seront affichées.</p>
+            <p>Si vous souhaitez retrouver un gif, c’est très simple ! Utilisez les mots clés dans la barre de recherche et plusieurs gifs vous seront affichées.</p>
             @include('post.modal')
             <h4 class="mt-4 mb-3 text-muted">Preview</h5>
             <div class="text-center">
@@ -74,10 +79,10 @@
             <div class="mb-3">
                 <h5>Important – Au sujet des propositions de posts</h5>
                 <ol>
-                    <li>Les posts ne doivent pas contenir des mots vulgaires ou d’avoir des connotation raciste sexiste discriminatoire etc. </li>
+                    <li>Les posts ne doivent pas contenir des mots vulgaires ou d’avoir des connotation raciste, sexiste, discriminatoire, etc...</li>
                     <li>Les images/gifs avec un contenu pornographique seront interdites.</li>
-                    <li>Le repost des images/gifs déjà existants sur la plateforme ne sera pas accepté. </li>
-                    <li>Si votre post n’a pas été accepté par l'administrateur, il est inutile de renouveler la demande. De toute façon, elle ne sera pas acceptée.</li>
+                    <li>Le repost des images/gifs déjà existants sur la plateforme ne sera pas accepté.</li>
+                    <li>Si votre post n’a pas été accepté par un moderateur ou administrateur, il est inutile de renouveler la demande. De toute façon, elle ne sera pas acceptée.</li>
                 </ol>
             </div>
 

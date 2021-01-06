@@ -64,7 +64,7 @@ class PostController extends Controller
         $post = Post::find($id);
 
         // On vérifie que l'utilisateur à les droits de le modifier
-        if ($this->checkPostPerms($post)) {
+        if (!$this->checkPostPerms($post)) {
             // Si le post existe, on le supprime
             if ($post) $post->delete();
         }
@@ -77,7 +77,12 @@ class PostController extends Controller
         if (!$id && $id != '0') $post = new Post($request->all());
         // Ou récupére celui déjà existant
         else {
-            $post = Post::find($id);
+            $post = DB::table('posts')
+                            ->select('posts.*', 'users.username')
+                            ->where('posts.id', '=', $id)
+                            ->join('users', 'posts.user_id', '=', 'users.id')
+                            ->first();
+
             // Si le post n'existe pas
             if (!$post) return abort(404);
 
@@ -117,7 +122,7 @@ class PostController extends Controller
 
         return view('post/form', [
             'post' => $post,
-            'edit' => $post->exists, // si s'est une édition
+            'edit' => !!$post->id, // si s'est une édition
             'error' => $error
         ]);
     }
