@@ -42,13 +42,20 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param  \Throwable  $e
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
+        // ENV: PRODUCTION
+        if (!env('APP_DEBUG')) {
+            if ($exception instanceof HttpException) {
+                return response(view('errors/all'), $exception->getStatusCode());
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

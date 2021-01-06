@@ -30,7 +30,10 @@ class AdminPostController extends Controller
     public function enable($id = null) {
         $post = Post::find($id);
 
-        if ($post &&  $post->is_published == false) {
+        // Si le post n'existe pas
+        if (!$post) return abort(404);
+
+        if ($post && !$post->is_published) {
             $post->where('id', $id)
                   ->update(['is_published'=> true]);
         }
@@ -41,10 +44,13 @@ class AdminPostController extends Controller
     /**
      * Dépublie le post
      */
-    public function disable($id = null){
+    public function disable($id = null) {
         $post = Post::find($id);
 
-        if ($post && $post->is_published == true) {
+        // Si le post n'existe pas
+        if (!$post) return abort(404);
+
+        if ($post && $post->is_published) {
             $post->where('id', $id)
                   ->update(['is_published'=> false]);
         }

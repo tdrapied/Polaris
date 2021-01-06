@@ -63,11 +63,11 @@ class PostController extends Controller
         // On récupére le post par rapport à l'id passé en paramètre
         $post = Post::find($id);
 
-        // On vérifie que l'utilisateur à les droits de le modifier
-        if (!$this->checkPostPerms($post)) {
-            // Si le post existe, on le supprime
-            if ($post) $post->delete();
-        }
+        // Si le post n'existe pas
+        if (!$post) return abort(404);
+
+        // On vérifie que l'utilisateur à les droits de le supprimer
+        if ($this->checkPostPerms($post)) $post->delete();
 
         return redirect()->route('home');
     }
