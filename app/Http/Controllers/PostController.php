@@ -44,7 +44,7 @@ class PostController extends Controller
     {
         $title = $request->get('title');
         $username = $request->get('username');
-       
+
         $posts = DB::table('posts')
                         ->select('posts.*', 'users.username')
                         ->where('title', 'like', "%$title%")
@@ -53,7 +53,7 @@ class PostController extends Controller
                         ->join('users', 'posts.user_id', '=', 'users.id')
                         ->orderBy('posts.created_at', 'desc')
                         ->get();
-                       
+
         return view('post/search', [
             'posts' => $posts
         ]);
@@ -63,8 +63,11 @@ class PostController extends Controller
         // On récupére le post par rapport à l'id passé en paramètre
         $post = Post::find($id);
 
-        // Si le post existe, on le supprime
-        if ($post) $post->delete();
+        // On vérifie que l'utilisateur à les droits de le modifier
+        if ($this->checkPostPerms($post)) {
+            // Si le post existe, on le supprime
+            if ($post) $post->delete();
+        }
 
         return redirect()->route('home');
     }
@@ -76,7 +79,10 @@ class PostController extends Controller
         else {
             $post = Post::find($id);
             // Si le post n'existe pas
-            if (!$post) return response(null, 400);
+            if (!$post) return abort(404);
+
+            // On vérifie que l'utilisateur à les droits de le modifier
+            if (!$this->checkPostPerms($post)) return abort(404);
         }
 
         $method = $request->method();
@@ -100,7 +106,7 @@ class PostController extends Controller
 
                 // Si l'enregistrement ne fonctionne pas
                 if (!$post->save()) {
-                    return response(null, 500);
+                    return abort(500);
                 }
 
                 return redirect()->route('home');
