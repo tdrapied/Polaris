@@ -69,8 +69,16 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
     $router->group(['prefix' => 'posts', 'middleware' => 'role:MODERATOR'], function () use ($router) {
 
         $router->get('/', [ 'as' => 'admin_post_list', 'uses' => 'AdminPostController@list' ]);
+        $router->get('delete/{id:[0-9]+}', [ 'as' => 'admin_post_delete', 'uses' => 'AdminPostController@delete' ]);
         $router->get('enable/{id:[0-9]+}', [ 'as' => 'admin_post_enable', 'uses' => 'AdminPostController@enable' ]);
         $router->get('disable/{id:[0-9]+}', [ 'as' => 'admin_post_disable', 'uses' => 'AdminPostController@disable' ]);
+
+        $router->group(['prefix' => 'edit/{id:[0-9]+}'], function () use ($router) {
+
+            $router->get('/', ['as' => 'admin_post_edit', 'uses' => 'AdminPostController@edit']);
+            $router->post('/', 'AdminPostController@edit');
+
+        });
 
     });
 

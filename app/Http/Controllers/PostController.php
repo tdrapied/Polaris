@@ -59,7 +59,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function delete(Request $request, $id = null) {
+    public function delete($id = null) {
         // On récupére le post par rapport à l'id passé en paramètre
         $post = Post::find($id);
 

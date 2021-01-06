@@ -33,20 +33,20 @@
                 </td>
                 <td>
                     @if ($post->is_published)
-                        <a class="btn btn-warning " href="{{ url('admin/posts/disable', $post->id) }}" role="button">
+                        <a class="btn btn-warning " href="{{ route('admin_post_disable', [ 'id' => $post->id ]) }}" role="button">
                             Dépublier
                         </a>
                     @else
-                        <a class="btn btn-success " href="{{ url('admin/posts/enable', $post->id) }}" role="button">
+                        <a class="btn btn-success " href="{{ route('admin_post_enable', [ 'id' => $post->id ]) }}" role="button">
                             Publier
                         </a>
                     @endif
 
-                    <a class="btn btn-info " href="{{ url('edit', $post->id) }}" role="button">
+                    <a class="btn btn-info " href="{{ route('admin_post_edit', [ 'id' => $post->id ]) }}" role="button">
                         Editer
                     </a>
 
-                    <a class="btn btn btn-danger " href="{{ url('delete', $post->id) }}" role="button">
+                    <a class="btn btn btn-danger " href="{{ route('admin_post_delete', [ 'id' => $post->id ]) }}" role="button">
                         Supprimer
                     </a>
                 </td>

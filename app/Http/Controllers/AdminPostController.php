@@ -24,6 +24,23 @@ class AdminPostController extends Controller
         ]);
     }
 
+    public function delete($id = null)
+    {
+        (new PostController)->delete($id);
+        return redirect()->route('admin_post_list');
+    }
+
+    public function edit(Request $request, $id = null)
+    {
+        $view = (new PostController)->form($request, $id);
+
+        if ($view instanceof \Illuminate\View\View) {
+            return $view;
+        }
+
+        return redirect()->route('admin_post_list');
+    }
+
     /**
      * Publie le post
      */
