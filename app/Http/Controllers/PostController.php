@@ -100,6 +100,9 @@ class PostController extends Controller
             $error = $validator->fails();
             if (!$error) {
 
+                // Pour éviter bug on reprend l'object du post
+                $post = Post::find($id);
+
                 // Modifie le post avec les nouvelles données soumis par le formulaire
                 $post->update($request->all());
 
