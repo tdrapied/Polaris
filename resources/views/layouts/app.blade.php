@@ -24,15 +24,12 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mr-3">
                         <a class="btn btn-outline-secondary" href="{{ route('post_random') }}" role="button">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dice-2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M0 3a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3zm5.5 1a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                            </svg>
-                            Random
+                            🎲 Random
                         </a>
                     </li>
                     <li class="nav-item mr-3">
                         <a class="btn btn-primary" href="{{ route('post_new') }}" role="button">
-                            Propose un post
+                            📝 Propose un post
                         </a>
                     </li>
                     <div class="btn-group" role="group">
@@ -40,13 +37,38 @@
                             @if(isset($_SESSION['user']))
                                 🙋‍♀️
                             @else
-                                🙅
+                                🕵️‍♂️
                             @endif
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             @if(isset($_SESSION['user']))
-                                <li><a class="dropdown-item disabled" href="#">Hello <strong>{{ $_SESSION['user']->username }}</strong> !</a></li>
+
+                                @php($role = $_SESSION['user']->role)
+
+                                <li>
+                                    <a class="dropdown-item disabled" href="#">
+                                        Hello <strong>{{ $_SESSION['user']->username }}</strong> !
+                                        @if ($role == "MODERATOR")
+                                            <span class="badge badge-warning"> {{ $role }}</span>
+                                        @elseif ($role == "ADMIN")
+                                            <span class="badge badge-danger">{{ $role }}</span>
+                                        @else
+                                            <span class="badge badge-secondary">USER</span>
+                                        @endif
+                                    </a>
+                                </li>
                                 <li><hr class="dropdown-divider"></li>
+
+                                @if ($role == "MODERATOR" || $role == "ADMIN")
+                                    <li><a class="dropdown-item" href="{{ route('admin_post_list') }}">Gestion des posts</a></li>
+
+                                    @if ($role == "ADMIN")
+                                        <li><a class="dropdown-item" href="{{ route('admin_user_list') }}">Gestion des utilisateurs</a></li>
+                                    @endif
+
+                                    <li><hr class="dropdown-divider"></li>
+                                @endif
+
                                 <li><a class="dropdown-item" href="{{ route('security_logout') }}">Se déconnecter</a></li>
                             @else
                                 <li><a class="dropdown-item disabled" href="#">Déconnecté(e)</a></li>

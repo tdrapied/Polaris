@@ -9,12 +9,14 @@ use App\Models\Post;
 class PostController extends Controller
 {
     /**
-     * Renvoie la liste des postes
+     * Renvoie la liste des postes publiées
      */
     public function list() {
         $posts = DB::table('posts')
+                        ->select('posts.*', 'users.username')
                         ->where('is_published', true)
-                        ->orderBy('created_at', 'desc')
+                        ->join('users', 'posts.user_id', '=', 'users.id')
+                        ->orderBy('posts.created_at', 'desc')
                         ->get();
 
         return view('post/list', [
@@ -27,7 +29,9 @@ class PostController extends Controller
      */
     public function random() {
         $random = DB::table('posts')
+                        ->select('posts.*', 'users.username')
                         ->where('is_published', true)
+                        ->join('users', 'posts.user_id', '=', 'users.id')
                         ->inRandomOrder()
                         ->first();
 
@@ -44,10 +48,12 @@ class PostController extends Controller
         $user = DB::table('users')->get('id');
         dd($user);
         $posts = DB::table('posts')
+                        ->select('posts.*', 'users.username')
                         ->where('title', 'like', "%$title%")
                         //->where('user_id', 'like', "%$user->id%")
                         ->where('is_published', true)
-                        ->orderBy('created_at', 'desc')
+                        ->join('users', 'posts.user_id', '=', 'users.id')
+                        ->orderBy('posts.created_at', 'desc')
                         ->get();
                         dd($user, $title, $posts,);
         return view('post/search', [
