@@ -32,14 +32,14 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo illo similique in libero ea! Distinctio?</p>
                     <form action="{{ route('post_search') }}" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="title" placeholder="Titre du post">
+                            <input type="text" class="form-control" name="title" placeholder="Titre du post" value="{{ isset($_GET['title']) ? $_GET['title'] : '' }}">
                         </div>
                         <div class="form-group">
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">@</div>
                                 </div>
-                                <input type="text" class="form-control" name="username" placeholder="Username">
+                                <input type="text" class="form-control" name="username" placeholder="Username" value="{{ isset($_GET['username']) ? $_GET['username'] : '' }}">
                             </div>
                         </div>
                         <button class="btn btn-secondary float-right" type="submit">Rechercher</button>
