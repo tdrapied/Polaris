@@ -45,7 +45,6 @@ class PostController extends Controller
         $title = $request->get('title');
         $username = $request->get('username');
        
-        $user = DB::table('users')->get('id');
         $posts = DB::table('posts')
                         ->select('posts.*', 'users.username')
                         ->where('title', 'like', "%$title%")
