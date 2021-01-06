@@ -3,4 +3,8 @@
 @section('title', 'Connectez-vous')
 
 @section('btn_text', 'Connection')
-<a href="https://example.com">Website</a>
+
+@section('ahref')
+    Nouveau membre ?
+    <a href="{{ route('security_signup') }}">Cliquer ici </a>
+@endsection
