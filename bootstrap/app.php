@@ -75,11 +75,11 @@ $app->configure('app');
 */
 
 $app->middleware([
-    App\Http\Middleware\Connection::class,
+    App\Http\Middleware\Authenticate::class,
 ]);
 
 $app->routeMiddleware([
-    'auth' => App\Http\Middleware\Authenticate::class,
+    'role' => App\Http\Middleware\Role::class,
 ]);
 
 /*

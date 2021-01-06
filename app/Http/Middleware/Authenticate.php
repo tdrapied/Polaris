@@ -3,13 +3,13 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\Factory as Auth;
+use App\Models\User;
 use App\Traits\SessionTrait;
 
 class Authenticate
 {
     /**
-     * Vérifie que l'utilisateur est connecté
+     * Permet de vérifier si l'utilisateur est connecté que ces données n'ont pas étaient modifiées
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -18,10 +18,22 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        // Si la variable "user" existe dans la session
-        if (isset($_SESSION['user'])) return $next($request);
+        // Vérifie que le l'utilisateur est connecté
+        $encryptedUsername = $request->cookie(COOKIE_SESSION_KEY);
 
-        // sinon on redirige vers la connection
-        return redirect()->route('security_login');
+        if (!$encryptedUsername) return $next($request);
+
+        $username = SessionTrait::getSessionCookieValue($encryptedUsername);
+
+        if (!empty($username)) {
+
+            $user = User::getOneUserByUsername($username);
+
+            if ($user) $_SESSION['user'] = $user;
+            else SessionTrait::unsetSessionCookie();
+
+        }
+
+        return $next($request);
     }
 }
