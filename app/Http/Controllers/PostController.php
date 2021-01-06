@@ -43,19 +43,19 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $title = $request->get('title');
-        $user_id = $request->get('user_id');
+        $username = $request->get('username');
        
         $user = DB::table('users')->get('id');
-        dd($user);
         $posts = DB::table('posts')
                         ->select('posts.*', 'users.username')
                         ->where('title', 'like', "%$title%")
                         //->where('user_id', 'like', "%$user->id%")
+                        ->where('username', 'like', "%$username%")
                         ->where('is_published', true)
                         ->join('users', 'posts.user_id', '=', 'users.id')
                         ->orderBy('posts.created_at', 'desc')
                         ->get();
-                        dd($user, $title, $posts,);
+                       
         return view('post/search', [
             'posts' => $posts
         ]);
