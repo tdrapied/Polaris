@@ -6,9 +6,9 @@
         <img class="mb-2" src="{{ url('assets/image/logo.png')}}" alt="" width="72" height="72">
         <h2>Propose un post pour Polaris</h2>
         <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum ipsam magni saepe quidem ex illum iusto sequi laudantium,
-            error voluptas, minima perspiciatis asperiores modi! Veniam quae officia maiores necessitatibus,
-            nobis maxime voluptas vitae rerum, esse quis eos magnam excepturi quo harum qui iusto? Facere, rem.
+            Bienvenue sur la plateforme Polaris, un espace libre et créatif pour les amateurs de gifs et d'humour. 
+            Ici chacun peut faire partie de la communauté Polaris en déposant des gifs via
+             l' Api Tenor ou en utilisant des liens des différentes images. On attend avec impatience vos partages.
         </p>
     </div>
 
@@ -18,7 +18,7 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Trouver un gif sur Tenor</span>
             </h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad rem ex sit nihil reiciendis ipsam.</p>
+            <p>Si vous souhaitez retrouver un gif, c’est très simple ! Utilisez les mots clés de la barre de recherche et plusieurs options vous seront affichées.</p>
             @include('post.modal')
             <h4 class="mt-4 mb-3 text-muted">Preview</h5>
             <div class="text-center">
@@ -74,11 +74,10 @@
             <div class="mb-3">
                 <h5>Important – Au sujet des propositions de posts</h5>
                 <ol>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, deserunt accusamus consequatur!</li>
-                    <li>Integer molestie lorem at massa</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In quae quo dolor praesentium iure, maiores quasi velit eligendi?</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                    <li>Les posts ne doivent pas contenir des mots vulgaires ou d’avoir des connotation raciste sexiste discriminatoire etc. </li>
+                    <li>Les images/gifs avec un contenu pornographique seront interdites.</li>
+                    <li>Le repost des images/gifs déjà existants sur la plateforme ne sera pas accepté. </li>
+                    <li>Si votre post n’a pas été accepté par l'administrateur, il est inutile de renouveler la demande. De toute façon, elle ne sera pas acceptée.</li>
                 </ol>
             </div>
 
