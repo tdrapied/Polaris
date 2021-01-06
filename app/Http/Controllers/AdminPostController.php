@@ -13,6 +13,7 @@ class AdminPostController extends Controller
      */
     public function list() {
         $posts = DB::table('posts')
+                        ->select('posts.*', 'users.username')
                         ->join('users', 'posts.user_id', '=', 'users.id')
                         ->orderBy('posts.created_at', 'desc')
                         // ->orderBy('id', 'asc')
@@ -27,10 +28,10 @@ class AdminPostController extends Controller
      * Publie le post
      */
     public function enable($id = null) {
-        $posts = Post::find($id);
+        $post = Post::find($id);
 
-        if ($posts &&  $posts->is_published == false) {
-            $posts->where('id', $id)
+        if ($post &&  $post->is_published == false) {
+            $post->where('id', $id)
                   ->update(['is_published'=> true]);
         }
 
@@ -41,10 +42,10 @@ class AdminPostController extends Controller
      * Dépublie le post
      */
     public function disable($id = null){
-        $posts = Post::find($id);
+        $post = Post::find($id);
 
-        if ($posts && $posts->is_published == true) {
-            $posts->where('id', $id)
+        if ($post && $post->is_published == true) {
+            $post->where('id', $id)
                   ->update(['is_published'=> false]);
         }
 
