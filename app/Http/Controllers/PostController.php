@@ -44,7 +44,7 @@ class PostController extends Controller
     {
         $title = $request->get('title');
         $username = $request->get('username');
-
+       
         $posts = DB::table('posts')
                         ->select('posts.*', 'users.username')
                         ->where('title', 'like', "%$title%")
@@ -53,7 +53,7 @@ class PostController extends Controller
                         ->join('users', 'posts.user_id', '=', 'users.id')
                         ->orderBy('posts.created_at', 'desc')
                         ->get();
-
+                       
         return view('post/search', [
             'posts' => $posts
         ]);
