@@ -56,7 +56,7 @@ $router->group(['prefix' => 'edit/{id:[0-9]+}', 'middleware' => 'auth'], functio
 
 $router->get('search', ['as' => 'post_search', 'uses' => 'PostController@search']);
 $router->get('random', ['as' => 'post_random', 'uses' => 'PostController@random']);
-$router->get('delete/{id:[0-9]+}', [ 'as' => 'post_delete', 'uses' => 'PostController@delete' ]);
+$router->get('delete/{id:[0-9]+}', [ 'as' => 'post_delete', 'middleware' => 'auth', 'uses' => 'PostController@delete' ]);
 
 /**
  * Admin
