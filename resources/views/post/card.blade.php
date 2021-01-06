@@ -11,7 +11,7 @@
 
             @php($user = isset($_SESSION['user']) ? $_SESSION['user'] : null)
 
-            @if ($user && $user->id == $post->user_id)
+            @if ($user && ( $user->role != "" || $user->id == $post->user_id ))
 
                <div class="text-end float-right">
                     <div class="dropdown">

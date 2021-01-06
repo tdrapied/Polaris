@@ -29,7 +29,7 @@
             <div class="card my-4">
                 <h5 class="card-header">🔎 Recherche</h5>
                 <div class="card-body">
-                    <p>Tu cherches ton post préféré, mais tu ne le retrouves pas ? Essaye la fonctionnalité ci-dessous. Tu n’as qu'à remplir le username ou le titre du post.</p>
+                    <p>Tu cherches ton post préféré, mais tu ne le retrouves pas ? Essaye la fonctionnalité ci-dessous. Tu n’as qu'à remplir avec le texte que contient le titre du post et/ou le nom de l'utilisateur.</p>
                     <form action="{{ route('post_search') }}" method="get">
                         <div class="form-group">
                             <input type="text" class="form-control" name="title" placeholder="Titre du post" value="{{ isset($_GET['title']) ? $_GET['title'] : '' }}">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-body">
                     Polaris est la nouvelle plateforme innovante qui vous donne un excellent état d’esprit et une grande diversité
-                     du contenu, avec une communauté de 10000 personnes.
+                    du contenu, avec une énorme communauté d'utilisateurs (ou pas).
                 </div>
             </div>
 
