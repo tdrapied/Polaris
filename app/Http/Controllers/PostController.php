@@ -101,7 +101,7 @@ class PostController extends Controller
             if (!$error) {
 
                 // Pour éviter bug on reprend l'object du post
-                $post = Post::find($id);
+                if ($id) $post = Post::find($id);
 
                 // Modifie le post avec les nouvelles données soumis par le formulaire
                 $post->update($request->all());
