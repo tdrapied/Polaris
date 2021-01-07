@@ -3,6 +3,7 @@
 ## Installation
 
 Créer la base de données mysql et vérifié que ce sont bien les bonnes données de connection dans le fichier `.env`.
+Ainsi, si vous souhaitez directement importer le fichier SQL s'est [par ici](#autre-données).
 
 Ensuite pour installer toutes les dépendances :
 
@@ -11,6 +12,8 @@ composer install
 ```
 
 ### Migration
+
+Pour créer les différentes tables de la base de données.
 
 info dev: 
 > Pour éviter de ce prendre la tête et aller plus rapidement, on ne créer pas de nouveau fichier de migration pour modifier une entité.
@@ -22,11 +25,16 @@ php artisan migrate
 ```
 ### Seeder
 
-Pour avoir un jeux de fausses données.
+Pour avoir des fausses données vous pouvez faire la commande suivante :
 
 ```
 php artisan db:seed
 ```
+
+### Autre données
+
+Sinon afin d'avoir des données plus réel importé directement le [fichier SQL](https://github.com/AH-REM/Polaris/releases/download/v1.0/database.sql) dans votre base de données.
+Pour ce qui est des mot de passe, les utilisateur classique ont le même mot de passe que leur nom (example: username: admin / password: admin) sinon le mot de passe est `password`.
 
 ## Démarrage
 
