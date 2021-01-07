@@ -51,7 +51,7 @@
 
                 <div class="mb-3">
                     <label for="description">Description du post (Optionnel)</label>
-                    <textarea class="form-control" id="description" name="description" value="{{ $post->description }}" rows="3"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ $post->description }}</textarea>
                 </div>
 
                 <div class="mb-3">
