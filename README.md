@@ -9,6 +9,8 @@
 Nous avions choisi de travailler sur Lumen, on a décidé de créer une plateforme web appelé Polaris. </br>
 Le concept de cette plateforme est la visualisation et le partage de post qui sont composés d’images ou de gifs avec un titre et une description (cf les joies du codes). 
 
+> Pour une question de compatibilté, veuillez plutôt utiliser Firefox, sinon le système de connection ne fonctionnera pas. 
+
 ## Installation
 
 Créer la base de données mysql et vérifié que ce sont bien les bonnes données de connection dans le fichier `.env`. </br>
