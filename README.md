@@ -12,7 +12,7 @@ composer install
 
 ### Migration
 
-Pour les dev: 
+info dev: 
 > Pour éviter de ce prendre la tête et aller plus rapidement, on ne créer pas de nouveau fichier de migration pour modifier une entité.
 On modifie directement le dossier déjà éxistant.
 [La documentation Laravel](https://laravel.com/docs/8.x/migrations)
